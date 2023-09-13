@@ -23,8 +23,8 @@ from bs4 import BeautifulSoup
 import re
 
 
-def export_data_to_csv():
-    data = Item.select_by_sql("SELECT * FROM Price")
+def export_data_to_csv(data):
+    data = Item.select_by_sql("SELECT * FROM Item")
     for d in data:
         print(d)
 
@@ -125,8 +125,8 @@ def main():
 
     with orm.db_session:
         for item in data:
-            Item(name=item[0], price=item[1], date_created=datetime.now())
-        export_data_to_csv()
+            Item(name=item[0], price=item[1], created_date=datetime.now())
+        export_data_to_csv(data)
 
 
 if __name__ == '__main__':
